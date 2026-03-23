@@ -1,45 +1,40 @@
 # nexcore-immunity
 
-Self-healing code system for the NexVigilant Core kernel. It uses a biological analogy (antibodies, PAMPs, DAMPs) to detect code antipatterns, apply automated corrections, and prevent regression through a persistent registry of learned threats.
+Part of the [NexVigilant](https://nexvigilant.com) pharmacovigilance platform.
 
-## Intent
-To enforce high-quality, panic-free, and idiomatically correct Rust code across the workspace. It enables the system to "learn" from its own failures by creating antibodies for specific antipatterns detected during development.
+## About NexVigilant
 
-## T1 Grounding (Lex Primitiva)
-Dominant Primitives:
-- **∃ (Existence)**: The core primitive for sensing the presence of a threat or pattern.
-- **κ (Comparison)**: Validates incoming code against known antibody patterns.
-- **μ (Mapping)**: Maps a detected threat to an automated fix transformation.
-- **π (Persistence)**: Durable storage of the antibody registry in `~/.claude/immunity/antibodies.yaml`.
-- **ρ (Recursion)**: The homeostatic SENSE → DECIDE → RESPOND → LEARN loop.
+NexVigilant makes pharmacovigilance accessible. We build open computation tools for drug safety signal detection, causality assessment, and regulatory intelligence — because patient safety knowledge should be available to everyone willing to learn.
 
-## Threat Classification
-- **PAMPs (Pathogen-Associated Molecular Patterns)**: External threats coming from user input, untrusted templates, or outdated dependency patterns.
-- **DAMPs (Damage-Associated Molecular Patterns)**: Internal damage signals such as compilation errors, test failures, or structural "smells."
+**Live tools:** [mcp.nexvigilant.com](https://mcp.nexvigilant.com) — 193 MCP tools for AI-powered pharmacovigilance, free to connect.
 
-## SOPs for Use
-### Scanning for Threats
-```rust
-use nexcore_immunity::{load_default_registry, ImmunityScanner};
+## Installation
 
-let registry = load_default_registry()?;
-let scanner = ImmunityScanner::new(&registry)?;
-let result = scanner.scan("let x = foo.unwrap();", Some("lib.rs"));
-
-if !result.clean {
-    // Handle detected threats
-}
+```toml
+[dependencies]
+nexcore-immunity = { git = "https://github.com/nexvigilant/nexcore-immunity" }
 ```
 
-### Adding a New Antibody
-1. Define the pattern in the antibody registry (`antibodies.yaml`).
-2. Specify the `ThreatType` (PAMP/DAMP) and `Severity`.
-3. Provide a `ResponseStrategy` (e.g., `SuggestSafeAlternative`).
-
-## Key Components
-- **ImmunityScanner**: The primary engine for pattern matching and threat detection.
-- **AntibodyRegistry**: Persistent collection of learned code patterns and their corresponding responses.
-- **AutoimmuneDiagnosis**: Tools for detecting when immunity rules are conflicting or overly aggressive.
+> **Note:** This crate was developed as part of the [nexcore](https://github.com/nexvigilant) workspace. Some dependencies may reference workspace-level configuration. See individual `Cargo.toml` for details.
 
 ## License
-Proprietary. Copyright (c) 2026 NexVigilant LLC. All Rights Reserved.
+
+**Personal, non-commercial use only.** See [LICENSE](LICENSE) for full terms.
+
+Organizations of any kind must have explicit written permission for use.
+Contact [matthew@nexvigilant.com](mailto:matthew@nexvigilant.com) for licensing.
+
+## Contributing
+
+Contributions are welcome under the following terms:
+
+1. **Fork & PR.** Fork this repository, make your changes, and submit a pull request.
+2. **CLA.** By submitting a pull request, you agree that your contributions become the property of NexVigilant LLC under the same license terms.
+3. **Code quality.** All Rust code must pass `cargo clippy -- -D warnings` and `cargo fmt --check`.
+4. **Tests.** New functionality should include tests. Run `cargo test --lib` before submitting.
+
+For questions or discussion, open an issue or reach out at [matthew@nexvigilant.com](mailto:matthew@nexvigilant.com).
+
+---
+
+Built by [NexVigilant LLC](https://nexvigilant.com) — Pharmacovigilance for NexVigilants.
