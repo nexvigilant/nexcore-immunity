@@ -1,0 +1,33 @@
+
+# Copyright © 2026 NexVigilant LLC. All Rights Reserved.
+# Intellectual Property of Matthew Alexander Campion, PharmD
+
+[package]
+name = "nexcore-immunity"
+version = "0.1.0"
+edition = "2024"
+authors = ["Matthew Alexander Campion, PharmD <matthew@nexvigilant.com>"]
+description = "Antipattern immunity system - self-healing code through learned antibodies"
+license = "LicenseRef-NexVigilant-Proprietary"
+repository = "https://github.com/nexvigilant/nexcore"
+keywords = ["antipattern", "immunity", "homeostasis", "code-quality"]
+categories = ["development-tools"]
+
+[dependencies]
+nexcore-error = { workspace = true }
+nexcore-flywheel = { path = "../nexcore-flywheel" }
+nexcore-fs = { workspace = true }
+nexcore-lex-primitiva = { version = "0.1.0", path = "../nexcore-lex-primitiva", registry = "nexcore" }
+nexcore-spliceosome = { version = "1.0.0", path = "../nexcore-spliceosome" }
+regex = { version = "1.10.5" }
+serde = { version = "1.0.204", features = ["derive"] }
+serde_json = { version = "1.0.120" }
+serde_yml = { version = "0.0.12" }
+tracing = { version = "0.1.40" }
+
+[dev-dependencies]
+proptest = { version = "1.6.0" }
+
+
+[lints]
+workspace = true
